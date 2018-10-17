@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 16 oct. 2018 à 16:59
+-- Généré le :  mer. 17 oct. 2018 à 11:30
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -187,10 +187,11 @@ CREATE TABLE IF NOT EXISTS `serie` (
 DROP TABLE IF EXISTS `video`;
 CREATE TABLE IF NOT EXISTS `video` (
   `id_video` int(11) NOT NULL AUTO_INCREMENT,
-  `la_video` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `lien_video` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `bande_annonce` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `format` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `taille_video` int(11) NOT NULL,
+  `image_video` blob NOT NULL,
   PRIMARY KEY (`id_video`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -198,8 +199,8 @@ CREATE TABLE IF NOT EXISTS `video` (
 -- Déchargement des données de la table `video`
 --
 
-INSERT INTO `video` (`id_video`, `la_video`, `bande_annonce`, `format`, `taille_video`) VALUES
-(1, 'Higher.Power', 'Higher.Power', 'MP3', 690);
+INSERT INTO `video` (`id_video`, `lien_video`, `bande_annonce`, `format`, `taille_video`, `image_video`) VALUES
+(1, 'Higher.Power', 'Higher.Power', 'MP3', 690, '');
 
 --
 -- Contraintes pour les tables déchargées
