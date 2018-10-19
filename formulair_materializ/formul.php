@@ -68,18 +68,18 @@
         <form action="#" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="nom" name="nomperso" type="text" class="validate">
+                    <input id="nom" name="nom_acteur" type="text" class="validate">
                     <label for="nom">Nom</label>
                 </div>
                 <div class="input-field col s6">
-                    <input  id="prenom" name="prenomperso" type="text" class="validate">
+                    <input  id="prenom" name="prenom_acteur" type="text" class="validate">
                     <label for="prenom">Prenom</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col s6">
                     <label>Nationnalite</label>
-                    <select class="browser-default" name="nationperso">
+                    <select class="browser-default" name="nationnalite">
                         <option value="0">Choisir un pays ?</option>
                         <option value="1">Senegalaise 1</option>
                         <option value="2">Francaise</option>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col s6">
                     <label>Sexe</label>
-                    <select class="browser-default" name="sexeperso">
+                    <select class="browser-default" name="sexe">
                         <option value="0">Masculin </option>
                         <option value="1">feminin </option>
 
@@ -105,18 +105,18 @@
         <form action="#" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="nomreal" name="nomreal" type="text" class="validate">
+                    <input id="nomreal" name="nom_realisateur" type="text" class="validate">
                     <label for="nomreal">Nom</label>
                 </div>
                 <div class="input-field col s6">
-                    <input  id="prenomreal" name="prenomreal" type="text" class="validate">
+                    <input  id="prenomreal" name="prenom_realisateur" type="text" class="validate">
                     <label for="prenomreal">Prenom</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col s6">
                     <label>Nationnalite</label>
-                    <select class="browser-default" name="nationreal">
+                    <select class="browser-default" name="nationnalite_realisateur">
                         <option value="0">Choisir un pays ?</option>
                         <option value="1">Senegalaise 1</option>
                         <option value="2">Francaise</option>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="col s6">
                     <label>Sexe</label>
-                    <select class="browser-default" name="sexereal">
+                    <select class="browser-default" name="sexe">
                         <option value="0">Masculin </option>
                         <option value="1">feminin </option>
 
@@ -146,11 +146,11 @@
         <form action="#" method="post" class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="anne_prod" name="anne_prod" type="date" class="validate">
+                    <input id="anne_prod" name="annee_production" type="date" class="validate">
                     <label for="anne_prod"> Date de Production</label>
                 </div>
                 <div class="input-field col s6">
-                        <textarea id="textarea1" name="text_descript" class="materialize-textarea"></textarea>
+                        <textarea id="textarea1" name="text_description" class="materialize-textarea"></textarea>
                         <label for="textarea1">Text Description</label>
                 </div>
             </div>
@@ -172,13 +172,15 @@
                         <input type="file">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <input class="file-path validate" type="text" name="image_video">
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+
 <div class="row">
         <div class="row col s12">
             <h2 class="center">Ajout de Film</h2>
@@ -195,26 +197,26 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col s6">
-                        <label>Genre</label>
-                        <select class="browser-default" name="genres" id="genres">
-                            <?php
-                            include ('model.php');
-                            $recuperer=$bdd->query('SELECT * FROM genre') or die(print_r($bdd->errorInfo()));
-                            while($donner=$recuperer->fetch())
-                            {
-                                ?>
-                                <option value="<?php echo htmlspecialchars($donner['id_genre']);?>">
-                                    <?php echo htmlspecialchars($donner['id_genre'].' - '.$donner['nom_genre']);?>
-                                </option>
-                                <?php
-                            }
+                <div class="col s6">
+                    <label>Genre</label>
+                    <select class="browser-default" name="id_genre" id="genre">
+                        <?php
+                        include ('model.php');
+                        $recuperer=$bdd->query('SELECT * FROM genre') or die(print_r($bdd->errorInfo()));
+                        while($donner=$recuperer->fetch())
+                        {
                             ?>
-                        </select>
-                    </div>
-                    <div class="col s6">
+                            <option value="<?php echo htmlspecialchars($donner['id_genre']);?>">
+                                <?php echo htmlspecialchars($donner['id_genre'].' - '.$donner['nom_genre']);?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col s6">
                     <label>Video</label>
-                    <select class="browser-default" name="videoo" id="videoo">
+                    <select class="browser-default" name="id_video" id="video">
                         <?php
 
                         $recuperer=$bdd->query('SELECT * FROM video') or die(print_r($bdd->errorInfo()));
@@ -228,6 +230,66 @@
                         }
                         ?>
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <label>Description</label>
+                    <select class="browser-default" name="id_description" id="id_description">
+                        <?php
+                        include ('model.php');
+                        $recuperer=$bdd->query('SELECT * FROM description') or die(print_r($bdd->errorInfo()));
+                        while($donner=$recuperer->fetch())
+                        {
+                            ?>
+                            <option value="<?php echo htmlspecialchars($donner['id_description']);?>">
+                                <?php echo htmlspecialchars($donner['id_description'].' - '.$donner['text_description']);?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col s6">
+                    <label>Realisateur</label>
+                    <select class="browser-default" name="id_realisateur" id="videoo">
+                        <?php
+
+                        $recuperer=$bdd->query('SELECT * FROM realisateur') or die(print_r($bdd->errorInfo()));
+                        while($donnerr=$recuperer->fetch())
+                        {
+                            ?>
+                            <option value="<?php echo htmlspecialchars($donnerr['id_realisateur']);?>">
+                                <?php echo htmlspecialchars($donnerr['id_realisateur'].' - '.$donnerr['prenom_realisateur'].' - '.$donnerr['nom_realisateur']);?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <label>Personnage</label>
+                    <select class="browser-default" name="id_personnage" id="id_personnage">
+                        <?php
+                        include ('model.php');
+                        $recuperer=$bdd->query('SELECT * FROM personnage') or die(print_r($bdd->errorInfo()));
+                        while($donner=$recuperer->fetch())
+                        {
+                            ?>
+                            <option value="<?php echo htmlspecialchars($donner['id_personnage']);?>">
+                                <?php echo htmlspecialchars($donner['id_personnage'].' - '.$donner['prenom_acteur'].' - '.$donner['nom_acteur']);?>
+                            </option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn-large" href="#" name="validerfilm"><i class="material-icons left">cloud</i>Valider</a>
                 </div>
             </div>
         </form>
